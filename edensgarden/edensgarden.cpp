@@ -1,15 +1,15 @@
-// main.cpp
-
 #include "MusicPlayer.h"
+#include "YouTubeDownloader.h"  // Include the YouTubeDownloader class
 #include <iostream>
 
 int main() {
 	MusicPlayer player;
+	YouTubeDownloader downloader;  // Create an instance of YouTubeDownloader
 
 	char choice;
 	while (true) {
 		std::cout << "\nMenu:\n";
-		std::cout << "a: Play/Pause, b: Volume, c: Previous, d: Next, e: Shuffle, f: Add Track, g: Remove Track, h: Exit\n";
+		std::cout << "a: Play/Pause, b: Volume, c: Previous, d: Next, e: Shuffle, f: Add Track from Filesystem, g: Remove Track, h: Add Song from YouTube, i: Add Playlist from YouTube, j: Exit\n";
 		std::cin >> choice;
 		std::cin.ignore();  // To consume the newline character
 
@@ -44,6 +44,32 @@ int main() {
 			player.removeCurrentTrack();
 			break;
 		case 'h':
+		{
+			std::string videoURL;
+			std::cout << "Enter YouTube video URL: ";
+			std::getline(std::cin, videoURL);
+			if (downloader.downloadVideo(videoURL)) {
+				std::cout << "Song downloaded successfully!" << std::endl;
+			}
+			else {
+				std::cerr << "Download failed!" << std::endl;
+			}
+			break;
+		}
+		case 'i':
+		{
+			std::string playlistURL;
+			std::cout << "Enter YouTube playlist URL: ";
+			std::getline(std::cin, playlistURL);
+			if (downloader.downloadPlaylist(playlistURL)) {
+				std::cout << "Playlist downloaded successfully!" << std::endl;
+			}
+			else {
+				std::cerr << "Download failed!" << std::endl;
+			}
+			break;
+		}
+		case 'j':
 			return 0;
 		default:
 			std::cout << "Invalid choice\n";

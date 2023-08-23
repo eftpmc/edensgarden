@@ -164,6 +164,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="edensgarden.cpp" />
+    <ClCompile Include="MusicPlayer.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="MusicPlayer.h" />
+    <ClInclude Include="YoutubeDownloader.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
